@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="./game-space.js"></script>
+    <script>
+      function changeSymbol(event) {
+        console.log({ event });
+        switch (event.target.innerText) {
+          case '':
+            event.target.setAttribute('symbol', 'X');
+            break;
+
+          case 'X':
+            event.target.setAttribute('symbol', 'O');
+            break;
+
+          case 'O':
+            event.target.setAttribute('symbol', '');
+            break;
+
+          default:
+            event.target.setAttribute('symbol', '');
+            break;
+        }
+      }
+    </script>
+    <body>
+      <header>
+        <h1>Tic Tac Toe</h1>
+        <button>Reset Game</button>
+      </header>
+      <div class="game">
+        <div class="game-board">
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+          <game-space></game-space>
+        </div>
+      </div>
+    </body>
+  </head>
+</html>
