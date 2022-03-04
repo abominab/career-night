@@ -1,6 +1,11 @@
 <html>
   <head>
-    <script></script>
+    <script>
+      function showAlert() {
+        const text = document.querySelector('input[type="text"]').value;
+        alert(text);
+      }
+    </script>
     <title>Elements Demo</title>
   </head>
   <body>
@@ -37,7 +42,7 @@
         </ol>
       </section>
       <section id="inputs">
-        <button>button</button>
+        <button onclick="showAlert()">button</button>
         <input placeholder="text" type="text" />
         <input placeholder="email" type="email" />
         <input placeholder="phone" type="phone" />

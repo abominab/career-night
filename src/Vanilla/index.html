@@ -1,0 +1,133 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      function init() {
+        isGameOver = false;
+        firstMark = 'X';
+        document.querySelector('.game-over').style['display'] = 'hidden';
+        console.log('%c init:', 'color:cyan');
+      }
+      init();
+      // todo: track current turn
+
+      function changePlayerName(event, playerNumber, playerName) {
+        const playerNode = (document
+          .querySelectorAll('.player-info')
+          [playerNumber - 1].querySelectorAll('span')[1].innerHTML =
+          playerName);
+        event.target.value = '';
+      }
+
+      function changeSymbol(event) {
+        switch (event.target.innerText) {
+          case '':
+            event.target.innerHTML = 'X';
+            break;
+
+          case 'X':
+            event.target.innerHTML = 'O';
+            break;
+
+          case 'O':
+            event.target.innerHTML = '';
+            break;
+
+          default:
+            event.target.innerHTML = '';
+            break;
+        }
+
+        checkForWin();
+      }
+
+      function checkForWin() {
+        const marks = Array.from(document.querySelectorAll('.board-space')).map(
+          ({ innerHTML }) => innerHTML
+        );
+
+        if (!marks.includes('X') && !marks.includes('O')) {
+          return isGameOver;
+        }
+
+        if (marks[0] === marks[1] && marks[1] === marks[2] && marks[1] !== '') {
+          isGameOver = true;
+        } else if (
+          marks[7] === marks[8] &&
+          marks[8] === marks[9] &&
+          marks[8] !== ''
+        ) {
+          isGameOver = true;
+        } else if (
+          marks[1] === marks[4] &&
+          marks[4] === marks[7] &&
+          marks[4] !== ''
+        ) {
+          isGameOver = true;
+        } else if (
+          marks[3] === marks[6] &&
+          marks[6] === marks[9] &&
+          marks[6] !== ''
+        ) {
+          isGameOver = true;
+        } else if (marks[5] !== '') {
+          if (marks[4] === marks[5] && marks[6] === marks[6]) {
+            isGameOver = true;
+          } else if (marks[2] === marks[5] && marks[5] === marks[8]) {
+            isGameOver = true;
+          } else if (marks[1] === marks[5] && marks[5] === marks[9]) {
+            isGameOver = true;
+          } else if (marks[3] === marks[5] && marks[5] === marks[9]) {
+            isGameOver = true;
+          }
+        }
+
+        if (isGameOver) {
+          console.log('%c gameOver:', 'color:tomato');
+          document.querySelector('.game-over').style['display'] = 'revert';
+        }
+      }
+    </script>
+    <title>Tic Tac Toe</title>
+    <body>
+      <header>
+        <h1>Tic Tac Toe</h1>
+        <div>
+          <div class="player-info">
+            <h2><span>X</span>'s - <span>Player 1</span></h2>
+            <input type="text" />
+            <button
+              onclick="changePlayerName(event, 1, this.previousElementSibling.value)"
+            >
+              Save
+            </button>
+          </div>
+          <div class="player-info">
+            <h2><span>O</span>'s - <span>Player 2</span></h2>
+            <input type="text" />
+            <button
+              onclick="changePlayerName(event, 2, this.previousElementSibling.value)"
+            >
+              Save
+            </button>
+          </div>
+        </div>
+        <button onclick="init()">Reset Game</button>
+        <h1 class="game-over">Winner</h1>
+      </header>
+      <div class="game">
+        <div class="game-board">
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="changeSymbol(event)"></div>
+        </div>
+      </div>
+    </body>
+  </head>
+</html>

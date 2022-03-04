@@ -1,12 +1,14 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="./game-space.js"></script>
+    <script defer src="./game-board.js"></script>
     <script>
       function changeSymbol(event) {
-        console.log({ event });
-        switch (event.target.innerText) {
+        w;
+        switch (event.target.attributes.symbol?.value) {
           case '':
+          case null:
+          case undefined:
             event.target.setAttribute('symbol', 'X');
             break;
 
@@ -24,6 +26,7 @@
         }
       }
     </script>
+    <title>Tic Tac Toe</title>
     <body>
       <header>
         <h1>Tic Tac Toe</h1>
@@ -32,14 +35,14 @@
       <div class="game">
         <div class="game-board">
           <game-space onclick="changeSymbol(event)"></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
-          <game-space></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
+          <game-space onclick="changeSymbol(event)"></game-space>
         </div>
       </div>
     </body>

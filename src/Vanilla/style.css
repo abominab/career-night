@@ -1,0 +1,32 @@
+h1 {
+  color: lime;
+}
+
+.board-space {
+  background-color: cyan;
+  display: flex;
+  font-size: 160px;
+  height: 200px;
+  justify-content: center;
+  width: 200px;
+}
+
+.game {
+  display: inline-block;
+}
+
+.game-board {
+  align-items: center;
+  background-color: black;
+  border: 1px solid red;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+  justify-items: center;
+  margin: 20px;
+}
+
+.game-over {
+  display: none;
+}
