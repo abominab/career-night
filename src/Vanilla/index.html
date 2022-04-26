@@ -2,14 +2,22 @@
   <head>
     <link rel="stylesheet" href="style.css" />
     <script>
+      let isXTurn = true;
+
       function init() {
         isGameOver = false;
         firstMark = 'X';
-        document.querySelector('.game-over').style['display'] = 'hidden';
-        console.log('%c init:', 'color:cyan');
+        document
+          .querySelector('.game-over')
+          .style.setProperty('display', 'none');
+        console.log('%c init:', 'color:cyan', {});
+
+        // reset the gameboard
+        const marks = Array.from(document.querySelectorAll('.board-space')).map(
+          (space) => (space.innerHTML = '')
+        );
       }
       init();
-      // todo: track current turn
 
       function changePlayerName(event, playerNumber, playerName) {
         const playerNode = (document
@@ -19,25 +27,13 @@
         event.target.value = '';
       }
 
-      function changeSymbol(event) {
-        switch (event.target.innerText) {
-          case '':
-            event.target.innerHTML = 'X';
-            break;
+      function changeTurn() {
+        isXTurn = !isXTurn;
+      }
 
-          case 'X':
-            event.target.innerHTML = 'O';
-            break;
-
-          case 'O':
-            event.target.innerHTML = '';
-            break;
-
-          default:
-            event.target.innerHTML = '';
-            break;
-        }
-
+      function takeTurn(event) {
+        event.target.innerHTML = isXTurn ? 'X' : 'O';
+        changeTurn();
         checkForWin();
       }
 
@@ -53,31 +49,31 @@
         if (marks[0] === marks[1] && marks[1] === marks[2] && marks[1] !== '') {
           isGameOver = true;
         } else if (
-          marks[7] === marks[8] &&
-          marks[8] === marks[9] &&
-          marks[8] !== ''
-        ) {
-          isGameOver = true;
-        } else if (
-          marks[1] === marks[4] &&
-          marks[4] === marks[7] &&
-          marks[4] !== ''
-        ) {
-          isGameOver = true;
-        } else if (
+          marks[0] === marks[3] &&
           marks[3] === marks[6] &&
-          marks[6] === marks[9] &&
-          marks[6] !== ''
+          marks[3] !== ''
         ) {
           isGameOver = true;
-        } else if (marks[5] !== '') {
+        } else if (
+          marks[6] === marks[7] &&
+          marks[7] === marks[8] &&
+          marks[7] !== ''
+        ) {
+          isGameOver = true;
+        } else if (
+          marks[2] === marks[5] &&
+          marks[5] === marks[8] &&
+          marks[5] !== ''
+        ) {
+          isGameOver = true;
+        } else if (marks[4] !== '') {
           if (marks[4] === marks[5] && marks[6] === marks[6]) {
             isGameOver = true;
-          } else if (marks[2] === marks[5] && marks[5] === marks[8]) {
+          } else if (marks[1] === marks[4] && marks[4] === marks[7]) {
             isGameOver = true;
-          } else if (marks[1] === marks[5] && marks[5] === marks[9]) {
+          } else if (marks[2] === marks[4] && marks[4] === marks[6]) {
             isGameOver = true;
-          } else if (marks[3] === marks[5] && marks[5] === marks[9]) {
+          } else if (marks[0] === marks[4] && marks[4] === marks[8]) {
             isGameOver = true;
           }
         }
@@ -92,6 +88,7 @@
     <body>
       <header>
         <h1>Tic Tac Toe</h1>
+        <button onclick="init()">Reset Game</button>
         <div>
           <div class="player-info">
             <h2><span>X</span>'s - <span>Player 1</span></h2>
@@ -112,20 +109,19 @@
             </button>
           </div>
         </div>
-        <button onclick="init()">Reset Game</button>
         <h1 class="game-over">Winner</h1>
       </header>
       <div class="game">
         <div class="game-board">
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
-          <div class="board-space" onclick="changeSymbol(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
+          <div class="board-space" onclick="takeTurn(event)"></div>
         </div>
       </div>
     </body>
