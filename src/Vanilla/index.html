@@ -1,129 +1,57 @@
 <html>
   <head>
-    <link rel="stylesheet" href="style.css" />
-    <script>
-      let isXTurn = true;
-
-      function init() {
-        isGameOver = false;
-        firstMark = 'X';
-        document
-          .querySelector('.game-over')
-          .style.setProperty('display', 'none');
-        console.log('%c init:', 'color:cyan', {});
-
-        // reset the gameboard
-        const marks = Array.from(document.querySelectorAll('.board-space')).map(
-          (space) => (space.innerHTML = '')
-        );
-      }
-      init();
-
-      function changePlayerName(event, playerNumber, playerName) {
-        const playerNode = (document
-          .querySelectorAll('.player-info')
-          [playerNumber - 1].querySelectorAll('span')[1].innerHTML =
-          playerName);
-        event.target.value = '';
-      }
-
-      function changeTurn() {
-        isXTurn = !isXTurn;
-      }
-
-      function takeTurn(event) {
-        event.target.innerHTML = isXTurn ? 'X' : 'O';
-        changeTurn();
-        checkForWin();
-      }
-
-      function checkForWin() {
-        const marks = Array.from(document.querySelectorAll('.board-space')).map(
-          ({ innerHTML }) => innerHTML
-        );
-
-        if (!marks.includes('X') && !marks.includes('O')) {
-          return isGameOver;
-        }
-
-        if (marks[0] === marks[1] && marks[1] === marks[2] && marks[1] !== '') {
-          isGameOver = true;
-        } else if (
-          marks[0] === marks[3] &&
-          marks[3] === marks[6] &&
-          marks[3] !== ''
-        ) {
-          isGameOver = true;
-        } else if (
-          marks[6] === marks[7] &&
-          marks[7] === marks[8] &&
-          marks[7] !== ''
-        ) {
-          isGameOver = true;
-        } else if (
-          marks[2] === marks[5] &&
-          marks[5] === marks[8] &&
-          marks[5] !== ''
-        ) {
-          isGameOver = true;
-        } else if (marks[4] !== '') {
-          if (marks[4] === marks[5] && marks[6] === marks[6]) {
-            isGameOver = true;
-          } else if (marks[1] === marks[4] && marks[4] === marks[7]) {
-            isGameOver = true;
-          } else if (marks[2] === marks[4] && marks[4] === marks[6]) {
-            isGameOver = true;
-          } else if (marks[0] === marks[4] && marks[4] === marks[8]) {
-            isGameOver = true;
-          }
-        }
-
-        if (isGameOver) {
-          console.log('%c gameOver:', 'color:tomato');
-          document.querySelector('.game-over').style['display'] = 'revert';
-        }
-      }
-    </script>
+    <link href="./style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Codystar:300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Varela Round"
+      rel="stylesheet"
+    />
+    <script src="./index.js" type="text/javascript"></script>
     <title>Tic Tac Toe</title>
-    <body>
-      <header>
-        <h1>Tic Tac Toe</h1>
-        <button onclick="init()">Reset Game</button>
-        <div>
-          <div class="player-info">
-            <h2><span>X</span>'s - <span>Player 1</span></h2>
-            <input type="text" />
-            <button
-              onclick="changePlayerName(event, 1, this.previousElementSibling.value)"
-            >
-              Save
-            </button>
-          </div>
-          <div class="player-info">
-            <h2><span>O</span>'s - <span>Player 2</span></h2>
-            <input type="text" />
-            <button
-              onclick="changePlayerName(event, 2, this.previousElementSibling.value)"
-            >
-              Save
-            </button>
-          </div>
-        </div>
-        <h1 class="game-over">Winner</h1>
-      </header>
-      <div class="game">
-        <div class="game-board">
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-          <div class="board-space" onclick="takeTurn(event)"></div>
-        </div>
-      </div>
-    </body>
   </head>
+  <body>
+    <header>
+      <div class="neons">
+        <h1><em>TIC-TAC-TOE</em></h1>
+      </div>
+      <!-- <div class="players">
+        <div class="player-info">
+          <h2>X's - <span>Player 1</span></h2>
+          <input type="text" />
+          <button
+            onclick="changePlayerName(event, 1, this.previousElementSibling.value)"
+          >
+            Save
+          </button>
+        </div>
+        <div class="player-info">
+          <h2>O's - <span>Player 2</span></h2>
+          <input type="text" />
+          <button
+            onclick="changePlayerName(event, 2, this.previousElementSibling.value)"
+          >
+            Save
+          </button>
+        </div>
+      </div> -->
+    </header>
+    <div class="game">
+      <div class="game-over"></div>
+      <div class="game-board">
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+        <div class="board-space" onclick="takeTurn(event)"></div>
+      </div>
+    </div>
+    <button onclick="init()" role="button">Reset Game</button>
+  </body>
 </html>
