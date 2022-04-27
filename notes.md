@@ -1,3 +1,11 @@
+## Software Engineer Review
+
+1. Different Jobs
+1. Compenstation
+   - $136,000 avg plus benefits (stock, 401k, bonus, insurance, etc)
+
+## Build App
+
 1. Review HTML and Objects
 
    - Example of basic html elements?
@@ -11,5 +19,5 @@
    - Verify contents in browser
 1. Add game board
    - div.game-board>game-space\*9
-1. ## Add CSS
+1. ### Add CSS
 1. Write GameSpace
