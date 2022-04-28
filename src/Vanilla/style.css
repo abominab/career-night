@@ -7,6 +7,20 @@ body {
   color: #00fff2;
   display: flex;
   flex-direction: column;
+  position: relative;
+  width: 100%;
+}
+
+body:before {
+  background-image: url('https://www.limitlesswalls.com/cdn-cgi/image/width=900,quality=60/http://llw-magento-images-prod.s3.amazonaws.com/catalog/product/a/d/adobe-134115811.jpg');
+  content: ' ';
+  height: 100%;
+  left: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 
 html {
@@ -62,6 +76,7 @@ input {
   font-size: 160px;
   height: 200px;
   justify-content: center;
+  cursor: pointer;
   width: 200px;
 }
 
@@ -79,7 +94,7 @@ input {
   grid-template-columns: repeat(3, 200px);
   grid-template-rows: repeat(3, 200px);
   justify-items: center;
-  margin: 20px 20px 60px;
+  margin: 20px;
   text-shadow: 0px 0px 20px #cfff04;
 }
 
@@ -100,10 +115,10 @@ input {
 }
 
 .players {
+  color: coral;
   display: flex;
   justify-content: space-around;
   margin: 36px 12px;
-  color: coral;
 }
 
 /* Neon Lights */
@@ -111,23 +126,23 @@ body {
   align-items: center;
   display: flex;
   background: black;
-  background-image: url('data:image/svg+xml,%3Csvg width="42" height="44" viewBox="0 0 42 44" xmlns="http://www.w3.org/2000/svg"%3E%3Cg id="Page-1" fill="none" fill-rule="evenodd"%3E%3Cg id="brick-wall" fill="%239C92AC" fill-opacity="0.3"%3E%3Cpath d="M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+  /* background-image: url('data:image/svg+xml,%3Csvg width="42" height="44" viewBox="0 0 42 44" xmlns="http://www.w3.org/2000/svg"%3E%3Cg id="Page-1" fill="none" fill-rule="evenodd"%3E%3Cg id="brick-wall" fill="%239C92AC" fill-opacity="0.3"%3E%3Cpath d="M0 0h42v44H0V0zm1 1h40v20H1V1zM0 23h20v20H0V23zm22 0h20v20H22V23z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); */
   justify-content: center;
 }
 
 .neons {
   font-family: 'Lato';
-  margin-top: 10rem;
   text-align: center;
 }
 
 .neons h1 {
-  font-size: 9rem;
-  text-align: center;
-  font-weight: bold;
-  -webkit-animation: glow 2s ease-in-out infinite alternate;
   -moz-animation: glow 2s ease-in-out infinite alternate;
+  -webkit-animation: glow 2s ease-in-out infinite alternate;
   animation: glow 2s ease-in-out infinite alternate;
+  font-size: 9rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  text-align: center;
 }
 
 @keyframes glow {
